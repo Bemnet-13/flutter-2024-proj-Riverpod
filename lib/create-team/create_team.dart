@@ -1,5 +1,6 @@
+import 'package:faq/util/colors.dart';
+import 'package:faq/util/my_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 void main() {
   runApp(const CreateTeam());
@@ -13,45 +14,74 @@ class CreateTeam extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Create Team'),
-          centerTitle: true,
-        ),
-        drawer: const Drawer(
-            // child: Icon(Icons.menu),
+          appBar: AppBar(
+            leading: Builder(
+                builder: (context) => IconButton(
+                      onPressed: () {
+                        Scaffold.of(context).openDrawer();
+                      },
+                      icon: const Icon(
+                        Icons.menu,
+                        color: CustomColors.lightPrimary,
+                      ),
+                    )),
+            title: const Text(
+              'Create Team',
+              style: TextStyle(color: CustomColors.lightPrimary),
             ),
-        body: Padding(
-          padding: const EdgeInsets.only(top: 30, left: 15, right: 15),
-          child: Column(
-            children: [
-              const Text(
-                'CREATE YOUR TEAM TO ADD PLAYER AVATARS.',
-                style: TextStyle(
-                  fontSize: 36,
-                ),
+            centerTitle: true,
+            backgroundColor: CustomColors.darkPrimary,
+          ),
+          drawer: const Drawer(
+              // child: Icon(
+              //   Icons.menu,
+              //   color: CustomColors.lightPrimary,
+              // ),
               ),
-              const SizedBox(
-                height: 36,
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+          body: const Padding(
+            padding: EdgeInsets.symmetric(vertical: 30, horizontal: 18),
+            child: Center(
+              child: Column(
                 children: [
-                  const TextField(
+                  SizedBox(
+                    height: 48,
+                  ),
+                  Text(
+                    'CREATE YOUR TEAM TO ADD PLAYER AVATARS',
+                    style: TextStyle(
+                      color: CustomColors.texColor,
+                      fontSize: 24,
+                    ),
+                    textAlign: TextAlign.center,
+                  ), // will be edited with custom text widget
+                  SizedBox(
+                    height: 25,
+                  ),
+                  TextField(
                     decoration: InputDecoration(
-                      hintText: 'Team name',
-                      border: OutlineInputBorder(),
+                      label: Text(
+                        'Team Name',
+                        style: TextStyle(
+                          color: CustomColors.subText,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                    style: TextStyle(
+                      fontSize: 16,
                     ),
                   ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: const Text('Create Team'),
+                  SizedBox(
+                    height: 40,
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [CustomButton(child: 'Create Team')],
+                  )
                 ],
               ),
-            ],
-          ),
-        ),
-      ),
+            ),
+          )),
     );
   }
 }
