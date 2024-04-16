@@ -1,6 +1,8 @@
 import 'package:faq/util/colors.dart';
+import 'package:faq/util/custom_field.dart';
 import 'package:faq/util/my_button.dart';
 import 'package:flutter/material.dart';
+// import 'package:faq/util/app_bar.dart';
 
 void main() {
   runApp(const CreateTeam());
@@ -26,7 +28,7 @@ class CreateTeam extends StatelessWidget {
                       ),
                     )),
             title: const Text(
-              'Create Team',
+              'Create Avatar',
               style: TextStyle(color: CustomColors.lightPrimary),
             ),
             centerTitle: true,
@@ -57,19 +59,8 @@ class CreateTeam extends StatelessWidget {
                   SizedBox(
                     height: 25,
                   ),
-                  TextField(
-                    decoration: InputDecoration(
-                      label: Text(
-                        'Team Name',
-                        style: TextStyle(
-                          color: CustomColors.subText,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
-                    style: TextStyle(
-                      fontSize: 16,
-                    ),
+                  CustomTextFIeld(
+                    label: 'Team Name',
                   ),
                   SizedBox(
                     height: 40,
