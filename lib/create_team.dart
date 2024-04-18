@@ -2,7 +2,6 @@ import 'package:faq/util/colors.dart';
 import 'package:faq/util/custom_field.dart';
 import 'package:faq/util/my_button.dart';
 import 'package:flutter/material.dart';
-// import 'package:faq/util/app_bar.dart';
 
 void main() {
   runApp(const CreateTeam());
