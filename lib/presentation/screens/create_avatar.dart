@@ -5,12 +5,8 @@ import '../widgets/paddings.dart';
 import 'package:flutter/material.dart';
 import '../widgets/avatar.dart';
 
-void main() {
-  runApp(const CreateAvatar());
-}
-
-class CreateAvatar extends StatelessWidget {
-  const CreateAvatar({super.key});
+class CreateAvatarScreen extends StatelessWidget {
+  const CreateAvatarScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

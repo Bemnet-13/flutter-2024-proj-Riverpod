@@ -7,14 +7,8 @@ import '../widgets/circular_display.dart';
 import '../widgets/player_tile.dart';
 import '../widgets/buttons.dart';
 
-
-void main() {
-  runApp(const MyApp());
-}
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  
-  
+class ManageTeamScreen extends StatelessWidget {
+  const ManageTeamScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -49,29 +43,29 @@ class MyApp extends StatelessWidget {
                   ),
                   const Padding(
                     padding: EdgeInsets.all(8.0),
-                    child: Text("TOTAL SCORE", style: TextStyle(
-                      fontSize: 25.0,
-                      fontWeight: FontWeight.bold
-                    ),
+                    child: Text(
+                      "TOTAL SCORE",
+                      style: TextStyle(
+                          fontSize: 25.0, fontWeight: FontWeight.bold),
                     ),
                   ),
                   CircleDisplay(radius: 60, text: score.toString()),
                   const SizedBox(
                     width: 350.0,
-                    child: Divider(
-                        thickness: 2.0
-                    ),
+                    child: Divider(thickness: 2.0),
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
-                        child: Text("MY PLAYERS",
-                        style: TextStyle(
-                          fontSize: 17.0,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 40.0, vertical: 20.0),
+                        child: Text(
+                          "MY PLAYERS",
+                          style: TextStyle(
+                            fontSize: 17.0,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                       const SizedBox(
@@ -92,7 +86,6 @@ class MyApp extends StatelessWidget {
               ),
             ),
           ),
-        )
-    );
+        ));
   }
 }

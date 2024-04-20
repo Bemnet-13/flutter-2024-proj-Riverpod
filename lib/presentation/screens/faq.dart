@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class FaqScreen extends StatelessWidget {
+  const FaqScreen({super.key});
   static const TextStyle faqStyle = TextStyle(
     fontWeight: FontWeight.w700,
     fontSize: 20.0,
@@ -23,55 +20,70 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title : const Icon(Icons.arrow_back),
+          title: const Icon(Icons.arrow_back),
         ),
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset("./assets/Fantasy_Ethiopia_Logo_Transparent.png",
+              Image.asset(
+                "./assets/Fantasy_Ethiopia_Logo_Transparent.png",
               ),
               const Padding(
                 padding: EdgeInsets.all(15.0),
-                child: Text("Here are some FAQs about Fantasy Ethiopia.",
-                  style: faqStyle,),
+                child: Text(
+                  "Here are some FAQs about Fantasy Ethiopia.",
+                  style: faqStyle,
+                ),
               ),
               const Padding(
                 padding: EdgeInsets.only(left: 35.0, right: 10.0),
-                child: Text("Q. What is Fantasy Ethiopia?",
-                  style: faqStyle,),
+                child: Text(
+                  "Q. What is Fantasy Ethiopia?",
+                  style: faqStyle,
+                ),
               ),
               const Padding(
-                padding: EdgeInsets.only(top: 10.0, bottom: 20.0, left: 35.0, right: 10.0),
-                child: Text("Ans: ",
-                  style: faqStyle,),
+                padding: EdgeInsets.only(
+                    top: 10.0, bottom: 20.0, left: 35.0, right: 10.0),
+                child: Text(
+                  "Ans: ",
+                  style: faqStyle,
+                ),
               ),
-              const Divider(
-                  thickness: 2.0
-              ),
+              const Divider(thickness: 2.0),
               const Padding(
                 padding: EdgeInsets.only(top: 15.0, left: 40.0, right: 10.0),
-                child: Text("Q. How does the game work?",
-                  style: faqStyle,),
+                child: Text(
+                  "Q. How does the game work?",
+                  style: faqStyle,
+                ),
               ),
               const Padding(
-                padding: EdgeInsets.only(top: 10.0, bottom: 20.0, left: 35.0, right: 10.0),
-
-                child: Text("Ans. ",
-                  style: faqStyle,),
+                padding: EdgeInsets.only(
+                    top: 10.0, bottom: 20.0, left: 35.0, right: 10.0),
+                child: Text(
+                  "Ans. ",
+                  style: faqStyle,
+                ),
               ),
               const Divider(
                 thickness: 2.0,
               ),
               const Padding(
-                padding: EdgeInsets.only(top : 15.0 , left: 35.0, right: 10.0),
-                child: Text("Q. How can I play?",
-                  style: faqStyle,),
+                padding: EdgeInsets.only(top: 15.0, left: 35.0, right: 10.0),
+                child: Text(
+                  "Q. How can I play?",
+                  style: faqStyle,
+                ),
               ),
               const Padding(
-                padding: EdgeInsets.only(top: 10.0, bottom: 20.0, left: 35.0, right: 10.0),
-                child: Text("Ans. ",
-                  style: faqStyle,),
+                padding: EdgeInsets.only(
+                    top: 10.0, bottom: 20.0, left: 35.0, right: 10.0),
+                child: Text(
+                  "Ans. ",
+                  style: faqStyle,
+                ),
               ),
               const SizedBox(
                 height: 100.0,

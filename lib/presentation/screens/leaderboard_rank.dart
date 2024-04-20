@@ -4,20 +4,15 @@ import 'package:flutter/material.dart';
 import '../widgets/appbar.dart';
 import '../widgets/leader_board_list_body.dart';
 
-void main(){
-  runApp(MyApp());
+class LeaderboardRankScreen extends StatelessWidget {
+  const LeaderboardRankScreen({super.key});
 
-}
-
-class MyApp extends StatelessWidget{
-  const MyApp({super.key});
-
-  @override 
-  Widget build(context){
+  @override
+  Widget build(context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: Appbar(title:"Leader Board"),
-        body:LeaderBoardListBody(),
+        appBar: Appbar(title: "Leader Board"),
+        body: LeaderBoardListBody(),
       ),
     );
   }

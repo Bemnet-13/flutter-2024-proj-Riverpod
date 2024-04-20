@@ -3,12 +3,8 @@ import '../widgets/custom_field.dart';
 import '../widgets/my_button.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const CreateTeam());
-}
-
-class CreateTeam extends StatelessWidget {
-  const CreateTeam({super.key});
+class CreateTeamScreen extends StatelessWidget {
+  const CreateTeamScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

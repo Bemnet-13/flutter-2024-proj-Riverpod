@@ -8,11 +8,8 @@ import '../widgets/colors.dart';
 import '../widgets/text_styles.dart';
 import '../widgets/text_fields.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class SignupScreen extends StatelessWidget {
+  const SignupScreen({super.key});
 
   // This widget is the root of your application.
   @override
@@ -29,13 +26,16 @@ class MyApp extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Image.asset('./assets/Fantasy_Ethiopia_Logo_Transparent.png',
+              Image.asset(
+                './assets/Fantasy_Ethiopia_Logo_Transparent.png',
                 width: 350,
                 height: 350,
               ),
               Container(
                 decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(40), topRight: Radius.circular(40)),
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(40),
+                      topRight: Radius.circular(40)),
                   color: Colors.white,
                 ),
                 child: Column(
@@ -43,7 +43,8 @@ class MyApp extends StatelessWidget {
                   children: [
                     const Padding(
                       padding: EdgeInsets.fromLTRB(30, 20, 0, 0),
-                      child: Text("Signup",
+                      child: Text(
+                        "Signup",
                         style: StyledText.loginStyle,
                       ),
                     ),
@@ -54,10 +55,8 @@ class MyApp extends StatelessWidget {
                     const SizedBox(
                       height: 15.0,
                     ),
-
                     TextFieldWithIcon("EMAIL", Icons.email_outlined),
                     TextFieldWithIcon("PASSWORD", Icons.lock_open_outlined),
-
                     const SizedBox(
                       height: 20.0,
                     ),
@@ -66,7 +65,6 @@ class MyApp extends StatelessWidget {
                   ],
                 ),
               ),
-
             ],
           ),
         ),
