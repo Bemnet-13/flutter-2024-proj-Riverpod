@@ -26,6 +26,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Your App Name',
       initialRoute: '/login', // Set the initial route to the login screen
+        theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+        useMaterial3: true,
+        fontFamily: 'Poppins',
+        ),
       routes: {
         '/login': (context) => LoginScreen(),
         '/signup': (context) => SignupScreen(),
