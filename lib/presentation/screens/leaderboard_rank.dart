@@ -9,11 +9,9 @@ class LeaderboardRankScreen extends StatelessWidget {
 
   @override
   Widget build(context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: Appbar(title: "Leader Board"),
-        body: LeaderBoardListBody(),
-      ),
+    return Scaffold(
+      appBar: Appbar(title: "Leader Board"),
+      body: LeaderBoardListBody(),
     );
   }
 }
