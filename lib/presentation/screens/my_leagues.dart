@@ -1,5 +1,5 @@
-import 'package:faq/util/colors.dart';
-import 'package:faq/util/my_button.dart';
+import '../widgets/colors.dart';
+import '../widgets/my_button.dart';
 import 'package:flutter/material.dart';
 
 void main() {

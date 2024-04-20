@@ -1,20 +1,24 @@
 import 'dart:ui';
 
-import 'package:faq/widgets/colors.dart';
+import '../widgets/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'widgets/circular_display.dart';
-import 'widgets/player_tile.dart';
-import 'widgets/buttons.dart';
+import '../widgets/circular_display.dart';
+import '../widgets/player_tile.dart';
+import '../widgets/buttons.dart';
+
 
 void main() {
   runApp(const MyApp());
 }
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+  
+  
 
   @override
   Widget build(BuildContext context) {
+    var score = 10;
     return MaterialApp(
         title: 'Manage Team',
         theme: ThemeData(
@@ -24,7 +28,7 @@ class MyApp extends StatelessWidget {
         ),
         home: Scaffold(
           appBar: AppBar(
-            backgroundColor: primary,
+            backgroundColor: CustomColors.primary,
             title: const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

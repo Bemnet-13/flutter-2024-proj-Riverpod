@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
                             width: 100,
                             height: 100,
                             child: Image.asset(
-                              'images/avat.png',
+                              'assets/avat.png',
                               fit: BoxFit.contain,
                             ),
                           ),
@@ -92,7 +92,7 @@ class MyApp extends StatelessWidget {
                             width: 110,
                             height: 110,
                             child: Image.asset(
-                              'images/herevat.png',
+                              'assets/herevat.png',
                               fit: BoxFit.contain,
                             ),
                           ),
@@ -129,7 +129,7 @@ class MyApp extends StatelessWidget {
                             width: 100,
                             height: 100,
                             child: Image.asset(
-                              'images/cale.png',
+                              'assets/cale.png',
                               fit: BoxFit.contain,
                             ),
                           ),

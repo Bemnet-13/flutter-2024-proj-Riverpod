@@ -1,12 +1,12 @@
 import 'dart:ui';
 
-import 'package:faq/widgets/buttons.dart';
+import '../widgets/buttons.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter/widgets.dart';
-import './widgets/chips.dart';
-import './widgets/colors.dart';
-import 'widgets/text_styles.dart';
-import 'widgets/text_fields.dart';
+import '../widgets/chips.dart';
+import '../widgets/colors.dart';
+import '../widgets/text_styles.dart';
+import '../widgets/text_fields.dart';
 
 void main() {
   runApp(const MyApp());

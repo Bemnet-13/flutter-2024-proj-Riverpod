@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'widgets/appbar.dart';
-import 'widgets/leader_board_list_body.dart';
+import '../widgets/appbar.dart';
+import '../widgets/leader_board_list_body.dart';
 
 void main(){
   runApp(MyApp());

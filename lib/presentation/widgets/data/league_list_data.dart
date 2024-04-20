@@ -1,4 +1,4 @@
-import 'package:fantasy/models/league_model.dart';
+import '../models/league_model.dart';
 
 class LeagueListData{
   final List leaguelistdata = [

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../data/league_list_data.dart';
+import 'data/league_list_data.dart';
 import 'entries/league_list_entry.dart';
 
 class LeagueListBody extends StatelessWidget{

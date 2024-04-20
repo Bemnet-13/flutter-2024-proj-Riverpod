@@ -2,7 +2,7 @@
 
 
 import 'package:flutter/material.dart';
-import '../data/leader_board_list_data.dart';
+import 'data/leader_board_list_data.dart';
 
 
 class LeaderBoardListBody extends StatelessWidget{

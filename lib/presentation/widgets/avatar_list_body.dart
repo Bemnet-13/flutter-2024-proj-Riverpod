@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../data/avatar_list_data.dart';
+import 'data/avatar_list_data.dart';
 import 'entries/avatar_list_entry.dart';
 
 

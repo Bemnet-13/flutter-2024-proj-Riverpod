@@ -1,4 +1,4 @@
-import 'package:faq/util/colors.dart';
+import '../widgets/colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomAvatar extends StatelessWidget {

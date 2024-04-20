@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import '../widgets/avatar_list_body.dart';
-import 'widgets/appbar.dart';
+import '../widgets/appbar.dart';
 
 void main() {
   runApp(const MyApp());

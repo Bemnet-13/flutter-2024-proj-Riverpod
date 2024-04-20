@@ -59,11 +59,6 @@ flutter:
 
   assets:
     - assets/
-    - assets/panda.jpeg
-    - images/avat.png
-    - images/cale.png
-    - images/leg.png
-    - images/herevat.png
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:

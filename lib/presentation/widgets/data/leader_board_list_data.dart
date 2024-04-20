@@ -1,4 +1,4 @@
-import 'package:fantasy/models/leader_board_list.dart';
+import '../models/leader_board_list.dart';
 
 class LeaderBoardListData{
 
