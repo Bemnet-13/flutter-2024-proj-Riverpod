@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/colors.dart';
 
 class AdminDashboardScreen extends StatelessWidget {
   const AdminDashboardScreen({super.key});
@@ -7,25 +8,22 @@ class AdminDashboardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 158, 158, 158),
-        title: Container(
-          color: const Color.fromARGB(255, 158, 158, 158),
-          child: Row(
-            children: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.menu),
-              ),
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 110.0),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [Text("Adminboard")],
-                ),
-              ),
-            ],
-          ),
+        leading: Builder(
+            builder: (context) => IconButton(
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  icon: const Icon(
+                    Icons.menu,
+                    color: CustomColors.lightPrimary,
+                  ),
+                )),
+        title: const Text(
+          'Admin DashBoard',
+          style: TextStyle(color: CustomColors.lightPrimary),
         ),
+        centerTitle: true,
+        backgroundColor: CustomColors.darkPrimary,
       ),
       body: SingleChildScrollView(
         child: SizedBox(

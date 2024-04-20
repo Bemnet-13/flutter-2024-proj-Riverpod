@@ -41,7 +41,7 @@ class AuthButton extends CustomButton {
     return Container(
       margin: EdgeInsets.fromLTRB(240.0, 0, 10, 0),
       child: ElevatedButton(
-        onPressed: () => null,
+        onPressed: () => Navigator.pushNamed(context, '/player_dashboard'),
         style: ElevatedButton.styleFrom(
           backgroundColor: buttonColor,
           shape: RoundedRectangleBorder(
@@ -78,10 +78,7 @@ class RightAlignedButton extends CustomButton {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Text(" "),
-        CustomButton("Add players", CustomColors.accent)
-      ],
+      children: [Text(" "), CustomButton("Add players", CustomColors.accent)],
     );
   }
 }

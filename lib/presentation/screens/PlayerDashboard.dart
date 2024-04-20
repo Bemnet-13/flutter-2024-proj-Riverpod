@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/colors.dart';
 
 class PlayerDashboardScreen extends StatelessWidget {
   const PlayerDashboardScreen({super.key});
@@ -7,25 +8,22 @@ class PlayerDashboardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 158, 158, 158),
-        title: Container(
-          color: const Color.fromARGB(255, 158, 158, 158),
-          child: Row(
-            children: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.menu),
-              ),
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 100.0),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [Text("Player DashBoard")],
-                ),
-              ),
-            ],
-          ),
+        leading: Builder(
+            builder: (context) => IconButton(
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  icon: const Icon(
+                    Icons.menu,
+                    color: CustomColors.lightPrimary,
+                  ),
+                )),
+        title: const Text(
+          'Player DashBoard',
+          style: TextStyle(color: CustomColors.lightPrimary),
         ),
+        centerTitle: true,
+        backgroundColor: CustomColors.darkPrimary,
       ),
       body: SingleChildScrollView(
         child: SizedBox(
@@ -49,13 +47,13 @@ class PlayerDashboardScreen extends StatelessWidget {
                         width: 100,
                         height: 100,
                         child: Image.asset(
-                          'images/leg.png',
+                          'assets/leg.png',
                           fit: BoxFit.contain,
                         ),
                       ),
                       ElevatedButton(
                           onPressed: () {
-                            // add some action latter
+                            Navigator.pushNamed(context, '/create_team');
                           },
                           style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all<Color>(
@@ -85,13 +83,13 @@ class PlayerDashboardScreen extends StatelessWidget {
                         width: 110,
                         height: 110,
                         child: Image.asset(
-                          'images/leg.png',
+                          'assets/leg.png',
                           fit: BoxFit.contain,
                         ),
                       ),
                       ElevatedButton(
                           onPressed: () {
-                            // add some action latter
+                            Navigator.pushNamed(context, '/manage_team');
                           },
                           style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all<Color>(
@@ -121,13 +119,13 @@ class PlayerDashboardScreen extends StatelessWidget {
                         width: 100,
                         height: 100,
                         child: Image.asset(
-                          'images/cale.png',
+                          'assets/cale.png',
                           fit: BoxFit.contain,
                         ),
                       ),
                       ElevatedButton(
                           onPressed: () {
-                            // add some action latter
+                            Navigator.pushNamed(context, '/my_leagues');
                           },
                           style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all<Color>(

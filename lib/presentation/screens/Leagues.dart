@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/colors.dart';
 
 class LeaguesScreen extends StatelessWidget {
   const LeaguesScreen({super.key});
@@ -7,25 +8,22 @@ class LeaguesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 158, 158, 158),
-        title: Container(
-          color: const Color.fromARGB(255, 158, 158, 158),
-          child: Row(
-            children: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.menu),
-              ),
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 110.0),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [Text("Leagues")],
-                ),
-              ),
-            ],
-          ),
+        leading: Builder(
+            builder: (context) => IconButton(
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  icon: const Icon(
+                    Icons.menu,
+                    color: CustomColors.lightPrimary,
+                  ),
+                )),
+        title: const Text(
+          'Leagues',
+          style: TextStyle(color: CustomColors.lightPrimary),
         ),
+        centerTitle: true,
+        backgroundColor: CustomColors.darkPrimary,
       ),
       body: SingleChildScrollView(
         child: SizedBox(
