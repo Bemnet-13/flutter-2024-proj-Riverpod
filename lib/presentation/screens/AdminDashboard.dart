@@ -1,3 +1,4 @@
+import 'package:faq/presentation/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 import '../widgets/colors.dart';
 
@@ -8,16 +9,6 @@ class AdminDashboardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Builder(
-            builder: (context) => IconButton(
-                  onPressed: () {
-                    Scaffold.of(context).openDrawer();
-                  },
-                  icon: const Icon(
-                    Icons.menu,
-                    color: CustomColors.lightPrimary,
-                  ),
-                )),
         title: const Text(
           'Admin DashBoard',
           style: TextStyle(color: CustomColors.lightPrimary),
@@ -51,18 +42,7 @@ class AdminDashboardScreen extends StatelessWidget {
                           fit: BoxFit.contain,
                         ),
                       ),
-                      ElevatedButton(
-                          onPressed: () {
-                            // add some action latter
-                          },
-                          style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                            const Color.fromARGB(255, 33, 33, 33),
-                          )),
-                          child: const Text(
-                            'Create New Avatar',
-                            style: TextStyle(color: Colors.white),
-                          ))
+                      CardButton("Create New Avatar", CustomColors.texColor, '/create_avatar')
                     ],
                   ),
                 ),
@@ -87,18 +67,7 @@ class AdminDashboardScreen extends StatelessWidget {
                           fit: BoxFit.contain,
                         ),
                       ),
-                      ElevatedButton(
-                          onPressed: () {
-                            // add some action latter
-                          },
-                          style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                            const Color.fromARGB(255, 33, 33, 33),
-                          )),
-                          child: const Text(
-                            'Manage Avatars',
-                            style: TextStyle(color: Colors.white),
-                          ))
+                      CardButton("Manage Avatars", CustomColors.texColor, '/admin_manage_avatars'),
                     ],
                   ),
                 ),
@@ -123,18 +92,8 @@ class AdminDashboardScreen extends StatelessWidget {
                           fit: BoxFit.contain,
                         ),
                       ),
-                      ElevatedButton(
-                          onPressed: () {
-                            // add some action latter
-                          },
-                          style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                            const Color.fromARGB(255, 33, 33, 33),
-                          )),
-                          child: const Text(
-                            'Manage Leagues',
-                            style: TextStyle(color: Colors.white),
-                          ))
+                      CardButton("Manage Leagues", CustomColors.texColor, '/leagues'),
+
                     ],
                   ),
                 ),

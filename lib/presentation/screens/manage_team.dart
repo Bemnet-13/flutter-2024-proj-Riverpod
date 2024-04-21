@@ -68,8 +68,8 @@ class ManageTeamScreen extends StatelessWidget {
                   const SizedBox(
                     height: 25.0,
                   ),
-                  RightAlignedButton("Add Players", CustomColors.accent),
-                  SizedBox(
+                  RightAlignedButton("Add Players", CustomColors.accent, 'add_avatar'),
+                  const SizedBox(
                     height: 50,
                   ),
                 ],

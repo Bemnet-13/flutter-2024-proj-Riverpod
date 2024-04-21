@@ -15,6 +15,8 @@ import 'presentation/screens/manage_team.dart';
 import 'presentation/screens/my_leagues.dart';
 import 'presentation/screens/PlayerDashboard.dart';
 import 'presentation/screens/signup.dart';
+import 'presentation/screens/choice.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -32,6 +34,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Poppins',
         ),
       routes: {
+        '/choice': (context) => Choice(),
         '/login': (context) => LoginScreen(),
         '/signup': (context) => SignupScreen(),
         '/admin_dashboard': (context) => AdminDashboardScreen(),

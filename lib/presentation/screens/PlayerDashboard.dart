@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/colors.dart';
+import '../widgets/buttons.dart';
 
 class PlayerDashboardScreen extends StatelessWidget {
   const PlayerDashboardScreen({super.key});
@@ -8,16 +9,6 @@ class PlayerDashboardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Builder(
-            builder: (context) => IconButton(
-                  onPressed: () {
-                    Scaffold.of(context).openDrawer();
-                  },
-                  icon: const Icon(
-                    Icons.menu,
-                    color: CustomColors.lightPrimary,
-                  ),
-                )),
         title: const Text(
           'Player DashBoard',
           style: TextStyle(color: CustomColors.lightPrimary),
@@ -51,18 +42,8 @@ class PlayerDashboardScreen extends StatelessWidget {
                           fit: BoxFit.contain,
                         ),
                       ),
-                      ElevatedButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/create_team');
-                          },
-                          style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                            const Color.fromARGB(255, 33, 33, 33),
-                          )),
-                          child: const Text(
-                            'Create New Team',
-                            style: TextStyle(color: Colors.white),
-                          ))
+                      CardButton("Create New Team", CustomColors.texColor, '/create_team'),
+
                     ],
                   ),
                 ),
@@ -87,18 +68,8 @@ class PlayerDashboardScreen extends StatelessWidget {
                           fit: BoxFit.contain,
                         ),
                       ),
-                      ElevatedButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/manage_team');
-                          },
-                          style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                            const Color.fromARGB(255, 33, 33, 33),
-                          )),
-                          child: const Text(
-                            'Manage Teams',
-                            style: TextStyle(color: Colors.white),
-                          ))
+                      CardButton("Manage Teams", CustomColors.texColor, '/manage_team'),
+
                     ],
                   ),
                 ),
@@ -123,18 +94,8 @@ class PlayerDashboardScreen extends StatelessWidget {
                           fit: BoxFit.contain,
                         ),
                       ),
-                      ElevatedButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/my_leagues');
-                          },
-                          style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                            const Color.fromARGB(255, 33, 33, 33),
-                          )),
-                          child: const Text(
-                            'Leagues',
-                            style: TextStyle(color: Colors.white),
-                          ))
+                      CardButton("Leagues", CustomColors.texColor, '/leagues'),
+
                     ],
                   ),
                 ),

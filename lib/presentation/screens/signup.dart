@@ -53,8 +53,8 @@ class SignupScreen extends StatelessWidget {
                   const SizedBox(
                     height: 20.0,
                   ),
-                  AuthButton("SIGNUP ", CustomColors.divider),
-                  const BottomText("Already have an account?", "Login")
+                  AuthButton("SIGNUP ", CustomColors.divider, '/login'),
+                  const BottomText("Already have an account?", "Login", '/login')
                 ],
               ),
             ),

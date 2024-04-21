@@ -21,7 +21,8 @@ class StyledText extends StatelessWidget {
 class BottomText extends StatelessWidget {
   final String left;
   final String textButton;
-  const BottomText(this.left, this.textButton);
+  final String navigateTo;
+  const BottomText(this.left, this.textButton, this.navigateTo);
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,7 @@ class BottomText extends StatelessWidget {
                   fontSize: 17.0
               ),
             ),
-            TextButton(onPressed: (){},
+            TextButton(onPressed: () {Navigator.pushNamed(context, navigateTo);},
               child: Text(textButton,
                 style: const TextStyle(
                     fontWeight: FontWeight.w900,
