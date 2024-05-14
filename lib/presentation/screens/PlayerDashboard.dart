@@ -1,108 +1,53 @@
 import 'package:flutter/material.dart';
 import '../widgets/colors.dart';
 import '../widgets/buttons.dart';
+import '../widgets/appbar.dart';
+import '../widgets/cards.dart';
 
 class PlayerDashboardScreen extends StatelessWidget {
   const PlayerDashboardScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Player DashBoard',
-          style: TextStyle(color: CustomColors.lightPrimary),
-        ),
-        centerTitle: true,
-        backgroundColor: CustomColors.darkPrimary,
-      ),
+    return const Scaffold(
+      appBar: CustomAppbar(title:  'Player DashBoard'),
       body: SingleChildScrollView(
         child: SizedBox(
             width: double.infinity,
             child: Column(
               children: [
-                const SizedBox(
+                SizedBox(
                   height: 20,
                 ),
-                Container(
-                  width: 200,
-                  height: 150,
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 189, 189, 189),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        width: 100,
-                        height: 100,
-                        child: Image.asset(
-                          'assets/leg.png',
-                          fit: BoxFit.contain,
-                        ),
-                      ),
-                      CardButton("Create New Team", CustomColors.texColor, '/create_team'),
-
-                    ],
-                  ),
-                ),
-                const SizedBox(
+                DashboardCard(
+                    navigateTo: '/create_team',
+                    buttonText: 'Create New Team',
+                    imagePath: 'assets/leg.png',
+                    imageWidth: 100,
+                    imageHeight: 100),
+                SizedBox(
                   height: 10,
                 ),
-                Container(
-                  width: 200,
-                  height: 150,
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 189, 189, 189),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        width: 110,
-                        height: 110,
-                        child: Image.asset(
-                          'assets/leg.png',
-                          fit: BoxFit.contain,
-                        ),
-                      ),
-                      CardButton("Manage Teams", CustomColors.texColor, '/manage_team'),
-
-                    ],
-                  ),
-                ),
-                const SizedBox(
+                DashboardCard(
+                    navigateTo: '/manage_team',
+                    buttonText: 'Manage Teams',
+                    imagePath: 'assets/leg.png',
+                    imageWidth: 110,
+                    imageHeight: 110),
+                SizedBox(
                   height: 10,
                 ),
-                Container(
-                  width: 200,
-                  height: 150,
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 189, 189, 189),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        width: 100,
-                        height: 100,
-                        child: Image.asset(
-                          'assets/cale.png',
-                          fit: BoxFit.contain,
-                        ),
-                      ),
-                      CardButton("Leagues", CustomColors.texColor, '/leagues'),
-
-                    ],
-                  ),
-                ),
+                DashboardCard(
+                    navigateTo: '/leagues',
+                    buttonText: 'Leagues',
+                    imagePath: 'assets/cale.png',
+                    imageWidth: 100,
+                    imageHeight: 100),
               ],
-            )),
+            ),
+        ),
       ),
-      backgroundColor: const Color.fromARGB(255, 245, 245, 245),
+      backgroundColor: Color.fromARGB(255, 245, 245, 245),
     );
   }
 }

@@ -6,63 +6,34 @@ class CustomButton extends StatelessWidget {
   final String buttonText;
   final Color buttonColor;
   final String navigateTo;
-  CustomButton(this.buttonText, this.buttonColor, this.navigateTo);
-
+  const CustomButton(this.buttonText, this.buttonColor, this.navigateTo, {super.key});
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: ElevatedButton(
-        onPressed: () => Navigator.pushNamed(context, navigateTo),
-        style: ElevatedButton.styleFrom(
-          backgroundColor: buttonColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
-        ),
-        child: Text(
-          buttonText,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 25.0,
-            color: Colors.black,
-          ),
-        ),
-      ),
+    return ElevatedButton(
+      onPressed: () => Navigator.pushNamed(context, navigateTo),
+      style: setButtonStyle(buttonColor, 16.0, 8.0),
+      child: setButtonText(buttonText, Colors.black, 25.0, FontWeight.bold)
     );
   }
 }
 
 class AuthButton extends CustomButton {
-  AuthButton(super.buttonText, super.buttonColor, super.navigateTo);
+  const AuthButton(super.buttonText, super.buttonColor, super.navigateTo, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Text(" "),
+        const Text(" "),
         ElevatedButton(
           onPressed: () => Navigator.pushNamed(context, super.navigateTo),
-          style: ElevatedButton.styleFrom(
-            backgroundColor: buttonColor,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            padding: EdgeInsets.symmetric(vertical: 13.0, horizontal: 10.0),
-          ),
+          style: setButtonStyle(buttonColor, 13.0, 8.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                buttonText,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25.0,
-                  color: Colors.black,
-                ),
-              ),
-              Icon(
+              setButtonText(buttonText, Colors.black, 25.0, FontWeight.bold),
+              const Icon(
                 Icons.arrow_forward,
                 color: Colors.black,
               )
@@ -75,38 +46,52 @@ class AuthButton extends CustomButton {
 }
 
 class RightAlignedButton extends CustomButton {
-  RightAlignedButton(super.buttonText, super.buttonColor, super.navigateTo);
+  const RightAlignedButton(super.buttonText, super.buttonColor, super.navigateTo, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [Text(" "), CustomButton("Add players", CustomColors.accent, super.navigateTo)],
+      children: [const Text(" "), CustomButton("Add players", CustomColors.accent, super.navigateTo)],
     );
   }
 }
 
 
 class CardButton extends CustomButton {
-
-  CardButton(super.buttonText, super.buttonColor, super.navigateTo);
+  const CardButton(super.buttonText, super.buttonColor, super.navigateTo, {super.key});
   Widget build(BuildContext context) {
       return ElevatedButton(
         onPressed: () => Navigator.pushNamed(context, navigateTo),
-        style: ElevatedButton.styleFrom(
-          backgroundColor: buttonColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 8.0),
-        ),
-        child: Text(
-          buttonText,
-          style: TextStyle(
-            fontSize: 15.0,
-            color: Colors.white,
-          ),
-        ),
+        style: setButtonStyle(buttonColor, 8.0, 8.0),
+        child: setButtonText(buttonText, Colors.white, 10.0, FontWeight.normal)
       );
     }
-  }
+}
+
+// Setter methods
+Text setButtonText(String buttonText, Color textColor, double fontSize, FontWeight weight) {
+  TextStyle buttonTextStyle = TextStyle(
+    fontSize: fontSize,
+    color: textColor,
+    fontWeight: weight,
+  );
+  return Text(
+      buttonText,
+      style: buttonTextStyle,
+  );
+}
+
+ButtonStyle setButtonStyle(Color buttonColor,double paddingVertical, double paddingHorizontal){
+  return ElevatedButton.styleFrom(
+    backgroundColor: buttonColor,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(10.0),
+    ),
+    padding: EdgeInsets.symmetric(
+        vertical: paddingVertical,
+        horizontal: paddingHorizontal
+    ),
+  );
+}
+  

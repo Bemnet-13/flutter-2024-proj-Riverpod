@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'colors.dart';
 
 class Appbar extends StatelessWidget implements PreferredSizeWidget{
   final String title;
@@ -20,6 +21,57 @@ class Appbar extends StatelessWidget implements PreferredSizeWidget{
           ),
         ),
         centerTitle: true,
+    );
+  }
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+}
+
+class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
+  final String title;
+  // ignore: use_super_parameters
+  const CustomAppbar({Key? key, required this.title}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      title: Text(
+        title,
+        style: TextStyle(color: CustomColors.lightPrimary),
+      ),
+      centerTitle: true,
+      backgroundColor: CustomColors.primary,
+    );
+  }
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+}
+
+
+class CustomBar extends StatelessWidget implements PreferredSizeWidget{
+  final String title;
+  const CustomBar({Key? key, required this.title}) : super(key: key);
+
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      leading: Builder(
+          builder: (context) => IconButton(
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+            icon: const Icon(
+              Icons.menu,
+              color: CustomColors.lightPrimary,
+            ),
+          )),
+      title: Text(
+        title,
+        style: const TextStyle(color: CustomColors.lightPrimary),
+      ),
+      centerTitle: true,
+      backgroundColor: CustomColors.primary,
     );
   }
   @override

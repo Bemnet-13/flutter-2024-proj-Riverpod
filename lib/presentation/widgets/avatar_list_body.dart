@@ -23,8 +23,6 @@ class AvatarListBody extends StatelessWidget {
           ),
         ),
         Expanded(
-          
-          
           child: ListView.builder(
             // physics: const ScrollPhysics(),
             // shrinkWrap: true,
@@ -33,7 +31,6 @@ class AvatarListBody extends StatelessWidget {
             //   crossAxisSpacing: 1,
             //   mainAxisSpacing: 1,
             // ),
-
             itemCount: avatarListData.length,
             itemBuilder: (context, index) {
               return AvatarListEntry(

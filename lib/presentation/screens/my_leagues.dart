@@ -1,5 +1,6 @@
 import '../widgets/colors.dart';
 import '../widgets/my_button.dart';
+import '../widgets/appbar.dart';
 import 'package:flutter/material.dart';
 
 class MyLeaguesScreen extends StatelessWidget {
@@ -8,24 +9,7 @@ class MyLeaguesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: Builder(
-            builder: (context) => IconButton(
-                  onPressed: () {
-                    Scaffold.of(context).openDrawer();
-                  },
-                  icon: const Icon(
-                    Icons.menu,
-                    color: CustomColors.lightPrimary,
-                  ),
-                )),
-        title: const Text(
-          'My Leagues',
-          style: TextStyle(color: CustomColors.lightPrimary),
-        ),
-        centerTitle: true,
-        backgroundColor: CustomColors.darkPrimary,
-      ),
+      appBar: CustomBar(title: 'My Leagues'),
       drawer: const Drawer(),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
