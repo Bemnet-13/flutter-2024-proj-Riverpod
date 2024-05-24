@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
         '/manage_team': (context) => const ManageTeamScreen(),
         '/my_leagues': (context) => const MyLeaguesScreen(),
         '/leaderboard_rank': (context) => const LeaderboardRankScreen(),
-        '/faq': (context) => FaqScreen(),
+        '/faq': (context) => const FaqScreen(),
         '/create_avatar': (context) => CreateAvatarScreen(),
         '/add_avatar': (context) => AddAvatarScreen(),
         '/admin_manage_avatars': (context) => AdminManageAvatarsScreen(),
