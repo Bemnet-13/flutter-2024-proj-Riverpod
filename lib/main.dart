@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
         '/admin_dashboard': (context) => const AdminDashboardScreen(),
         '/player_dashboard': (context) => const PlayerDashboardScreen(),
         '/leagues': (context) => const LeaguesScreen(),
-        '/join_league': (context) => JoinLeagueScreen(),
+        '/join_league': (context) => const JoinLeagueScreen(),
         '/create_team': (context) => CreateTeamScreen(),
         '/manage_team': (context) => ManageTeamScreen(),
         '/my_leagues': (context) => MyLeaguesScreen(),
