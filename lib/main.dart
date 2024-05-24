@@ -17,7 +17,6 @@ import 'presentation/screens/PlayerDashboard.dart';
 import 'presentation/screens/signup.dart';
 import 'presentation/screens/choice.dart';
 
-
 void main() {
   runApp(MyApp());
 }
@@ -28,13 +27,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Your App Name',
       initialRoute: '/login', // Set the initial route to the login screen
-        theme: ThemeData(
+      theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,
         fontFamily: 'Poppins',
-        ),
+      ),
       routes: {
-        '/choice': (context) => Choice(),
+        '/choice': (context) => const Choice(),
         '/login': (context) => LoginScreen(),
         '/signup': (context) => SignupScreen(),
         '/admin_dashboard': (context) => AdminDashboardScreen(),
