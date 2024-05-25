@@ -1,17 +1,29 @@
 import 'dart:ui';
 import '../widgets/buttons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../widgets/colors.dart';
 import '../widgets/text_styles.dart';
 import '../widgets/text_fields.dart';
+import 'package:go_router/go_router.dart';
+import '../../application/providers/auth_provider.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
 
-  // This widget is the root of your application.
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends ConsumerState<LoginScreen> {
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    final authState = ref.watch(authProvider);
+    final authNotifier = ref.watch(authProvider.notifier);
+
     return Scaffold(
       backgroundColor: CustomColors.lightPrimary,
       body: SingleChildScrollView(
@@ -25,8 +37,9 @@ class LoginScreen extends StatelessWidget {
             Container(
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(40),
-                    topRight: Radius.circular(40)),
+                  topLeft: Radius.circular(40),
+                  topRight: Radius.circular(40),
+                ),
                 color: Colors.white,
               ),
               child: Column(
@@ -44,19 +57,64 @@ class LoginScreen extends StatelessWidget {
                     child: Text(
                       "Please sign in to continue",
                       style: TextStyle(
-                          fontWeight: FontWeight.w500, fontSize: 20.0),
+                        fontWeight: FontWeight.w500,
+                        fontSize: 20.0,
+                      ),
                     ),
                   ),
                   const SizedBox(
                     height: 15.0,
                   ),
-                  const TextFieldWithIcon("EMAIL", Icons.email_outlined),
-                  const TextFieldWithIcon("PASSWORD", Icons.lock_open_outlined),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                    child: TextFieldWithIcon(
+                      labelText: "EMAIL",
+                      icon: Icons.email_outlined,
+                      controller: _usernameController,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                    child: TextFieldWithIcon(
+                      labelText: "PASSWORD",
+                      icon: Icons.lock_open_outlined,
+                      obscureText: true,
+                      controller: _passwordController,
+                    ),
+                  ),
                   const SizedBox(
                     height: 20.0,
                   ),
-                  AuthButton("LOGIN ", CustomColors.divider, '/choice'),
-                  const BottomText("Don't you have an account?", "Sign Up", '/signup')
+                  if (authState.isLoading)
+                    Center(child: CircularProgressIndicator()),
+                  if (authState.error != null)
+                    Center(
+                      child: Text(
+                        authState.error!,
+                        style: TextStyle(color: Colors.red),
+                      ),
+                    ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                    child: AuthButton(
+                      buttonText: "LOGIN",
+                      buttonColor: CustomColors.divider,
+                      onPressed: () async {
+                        final username = _usernameController.text;
+                        final password = _passwordController.text;
+                        await authNotifier.login(username, password);
+
+                        if (authState.token != null) {
+                          context.go('/admin_dashboard');
+                        }
+                      },
+                    ),
+                  ),
+                  const BottomText(
+                    "Don't you have an account?",
+                    "Sign Up",
+                    '/signup',
+                  ),
                 ],
               ),
             ),
@@ -64,5 +122,12 @@ class LoginScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    _passwordController.dispose();
+    super.dispose();
   }
 }

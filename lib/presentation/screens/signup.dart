@@ -2,16 +2,29 @@ import 'dart:ui';
 
 import '../widgets/buttons.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter/widgets.dart';
 import '../widgets/chips.dart';
 import '../widgets/colors.dart';
 import '../widgets/text_styles.dart';
 import '../widgets/text_fields.dart';
 
-class SignupScreen extends StatelessWidget {
+class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
 
-  // This widget is the root of your application.
+  @override
+  _SignupScreenState createState() => _SignupScreenState();
+}
+
+class _SignupScreenState extends State<SignupScreen> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,8 +40,9 @@ class SignupScreen extends StatelessWidget {
             Container(
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(40),
-                    topRight: Radius.circular(40)),
+                  topLeft: Radius.circular(40),
+                  topRight: Radius.circular(40),
+                ),
                 color: Colors.white,
               ),
               child: Column(
@@ -48,13 +62,41 @@ class SignupScreen extends StatelessWidget {
                   const SizedBox(
                     height: 15.0,
                   ),
-                  TextFieldWithIcon("EMAIL", Icons.email_outlined),
-                  TextFieldWithIcon("PASSWORD", Icons.lock_open_outlined),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                    child: TextFieldWithIcon(
+                      labelText: "EMAIL",
+                      icon: Icons.email_outlined,
+                      controller: _emailController,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                    child: TextFieldWithIcon(
+                      labelText: "PASSWORD",
+                      icon: Icons.lock_open_outlined,
+                      obscureText: true,
+                      controller: _passwordController,
+                    ),
+                  ),
                   const SizedBox(
                     height: 20.0,
                   ),
-                  AuthButton("SIGNUP ", CustomColors.divider, '/login'),
-                  const BottomText("Already have an account?", "Login", '/login')
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                    child: AuthButton(
+                      buttonText: "SIGNUP",
+                      buttonColor: CustomColors.divider,
+                      onPressed: () {
+                        // Handle signup logic here
+                      },
+                    ),
+                  ),
+                  const BottomText(
+                    "Already have an account?",
+                    "Login",
+                    '/login',
+                  ),
                 ],
               ),
             ),
