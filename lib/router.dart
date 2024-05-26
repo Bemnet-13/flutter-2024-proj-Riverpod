@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'presentation/screens/add_avatar.dart';
 import 'presentation/screens/AdminDashboard.dart';
 import 'presentation/screens/login.dart';
+import 'presentation/screens/signup.dart';
 
 final GoRouter router = GoRouter(
   routes: [
@@ -22,6 +23,9 @@ final GoRouter router = GoRouter(
       path: '/add_avatar',
       builder: (context, state) => AddAvatarScreen(),
     ),
-    // Add more routes here
+    GoRoute(
+      path: '/signup',
+      builder: (context, state) => SignupScreen(),
+    ),
   ],
 );
