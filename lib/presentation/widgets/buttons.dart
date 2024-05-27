@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:FantasyE/application/auth/auth_logic/auth_logic_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import '../../application/auth/auth_form/auth_bloc.dart';
 import 'colors.dart';
 
 class CustomButton extends StatelessWidget {
@@ -11,23 +15,36 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-        onPressed: () => Navigator.pushNamed(context, navigateTo),
+        onPressed: () => context.go(navigateTo),
         style: setButtonStyle(buttonColor, 16.0, 8.0),
         child: setButtonText(buttonText, Colors.black, 25.0, FontWeight.bold));
   }
 }
 
-class AuthButton extends StatelessWidget {
+class ActionButton extends StatelessWidget {
   final String buttonText;
   final Color buttonColor;
-  final VoidCallback onPressed;
+  final void Function() onPressedAction;
 
-  const AuthButton({
-    required this.buttonText,
-    required this.buttonColor,
-    required this.onPressed,
-    Key? key,
-  }) : super(key: key);
+  const ActionButton(
+      {required this.buttonText,
+      required this.buttonColor,
+      required this.onPressedAction});
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+        onPressed: onPressedAction,
+        style: setButtonStyle(buttonColor, 16.0, 8.0),
+        child: setButtonText(buttonText, Colors.black, 25.0, FontWeight.bold));
+  }
+}
+
+class AuthButton extends CustomButton {
+  final bool isLoggingIn;
+  final void Function() onPressedAction;
+  const AuthButton(super.buttonText, super.buttonColor, super.navigateTo,
+      this.isLoggingIn, this.onPressedAction,
+      {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,16 +53,16 @@ class AuthButton extends StatelessWidget {
       children: [
         const Text(" "),
         ElevatedButton(
-          onPressed: onPressed,
+          onPressed: onPressedAction,
           style: setButtonStyle(buttonColor, 13.0, 8.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              setButtonText(buttonText, Colors.black, 25.0, FontWeight.bold),
+              setButtonText(buttonText, Colors.white, 25.0, FontWeight.bold),
               const Icon(
                 Icons.arrow_forward,
-                color: Colors.black,
-              ),
+                color: Colors.white,
+              )
             ],
           ),
         ),
@@ -76,10 +93,10 @@ class CardButton extends CustomButton {
       {super.key});
   Widget build(BuildContext context) {
     return ElevatedButton(
-        onPressed: () => Navigator.pushNamed(context, navigateTo),
-        style: setButtonStyle(buttonColor, 8.0, 8.0),
+        onPressed: () => context.go(navigateTo),
+        style: setButtonStyle(buttonColor, 12, 12),
         child:
-            setButtonText(buttonText, Colors.white, 10.0, FontWeight.normal));
+            setButtonText(buttonText, Colors.white, 16.0, FontWeight.normal));
   }
 }
 
