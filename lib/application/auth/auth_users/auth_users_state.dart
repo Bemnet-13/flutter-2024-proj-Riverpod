@@ -1,4 +1,4 @@
-part of 'auth_users_bloc.dart';
+part of 'auth_users_notifier.dart';
 
 @freezed
 class AuthUsersState with _$AuthUsersState {

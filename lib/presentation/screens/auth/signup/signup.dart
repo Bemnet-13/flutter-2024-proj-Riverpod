@@ -1,10 +1,6 @@
-import 'package:FantasyE/application/auth/auth_form/auth_bloc.dart';
-import 'package:FantasyE/application/auth/auth_logic/auth_logic_bloc.dart';
 import 'package:flutter/material.dart';
 import '../../../widgets/colors.dart';
-import '../../../../injection.dart';
 import 'signup_form.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignupScreen extends StatelessWidget {
   const SignupScreen({super.key});
@@ -14,19 +10,6 @@ class SignupScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: CustomColors.scaffoldBackground,
-        body: MultiBlocProvider(
-          providers: [
-            BlocProvider<LoginFormBloc>(
-              create: (BuildContext context) => getIt<LoginFormBloc>(),
-            ),
-            BlocProvider<SignupFormBloc>(
-              create: (BuildContext context) => getIt<SignupFormBloc>(),
-            ),
-            BlocProvider<AuthLogicBloc>(
-              create: (BuildContext context) => getIt<AuthLogicBloc>(),
-            ),
-          ],
-          child: SignUpForm(),
-        ));
+        body: SignUpForm());
   }
 }

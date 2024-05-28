@@ -1,4 +1,4 @@
-part of 'league_watcher_bloc.dart';
+part of 'league_watcher_notifier.dart';
 
 @freezed
 class LeagueWatcherState with _$LeagueWatcherState {

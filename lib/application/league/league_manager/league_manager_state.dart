@@ -1,4 +1,4 @@
-part of 'league_manager_bloc.dart';
+part of 'league_manager_notifier.dart';
 
 @freezed
 class LeagueManagerState with _$LeagueManagerState {

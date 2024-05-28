@@ -1,7 +1,6 @@
 import 'package:FantasyE/domain/avatar/i_avatar_repository.dart';
 import 'package:FantasyE/domain/avatar/avatar_failure.dart';
 import 'package:FantasyE/domain/avatar/avatar.dart';
-import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

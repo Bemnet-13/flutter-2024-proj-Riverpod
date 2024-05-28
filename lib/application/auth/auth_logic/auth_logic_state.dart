@@ -1,4 +1,4 @@
-part of 'auth_logic_bloc.dart';
+part of 'auth_logic_notifier.dart';
 
 @freezed
 class AuthLogicState with _$AuthLogicState {

@@ -1,9 +1,12 @@
-import 'package:FantasyE/application/league/league_manager/league_manager_bloc.dart';
-import 'package:FantasyE/application/league/league_watcher/league_watcher_bloc.dart';
+import 'package:FantasyE/application/league/league_manager/league_manager_notifier.dart';
+import 'package:FantasyE/application/league/league_manager/league_manager_provider.dart';
+import 'package:FantasyE/application/league/league_watcher/league_watcher_notifier.dart';
+import 'package:FantasyE/application/league/league_watcher/league_watcher_provider.dart';
 import 'package:FantasyE/presentation/widgets/appbar.dart';
 import 'package:FantasyE/presentation/widgets/drawer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:FantasyE/domain/leagues/league.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../../../injection.dart';
 import 'package:flutter/material.dart';
@@ -12,106 +15,93 @@ class ManageLeagueScreen extends StatelessWidget {
   const ManageLeagueScreen({super.key});
 
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<LeagueWatcherBloc>(
-          create: (BuildContext context) => getIt<LeagueWatcherBloc>()
-            ..add(const LeagueWatcherEvent.getAllLeagues()),
-        ),
-      ],
-      child: const LeaguesList(),
-    );
+    return const LeaguesList();
   }
 }
 
-class LeaguesList extends StatelessWidget {
+class LeaguesList extends ConsumerWidget {
   const LeaguesList({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
-    return BlocConsumer<LeagueWatcherBloc, LeagueWatcherState>(
-      listener: (context, state) {},
-      builder: (context, state) {
-        return state.map(
-            initial: (_) => const Scaffold(
-                  body: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.hourglass_empty_rounded,
-                        size: 50,
-                      ),
-                      Text(
-                        "No Leagues Yet",
-                        style: TextStyle(fontSize: 30),
-                      ),
-                    ],
+  Widget build(BuildContext context, WidgetRef ref) {
+    final leagues = ref.read(leagueWatcherNotifierProvider);
+    return leagues.map(
+        initial: (_) => const Scaffold(
+              body: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.hourglass_empty_rounded,
+                    size: 50,
                   ),
-                ),
-            loadInProgress: (_) => const Center(
-                  child: CircularProgressIndicator(),
-                ),
-            loadFailure: (_) => const Scaffold(
-                  body: Column(
-                    children: [
-                      Icon(Icons.cloud_off, size: 50),
-                      Text(
-                        "Load Failure",
-                        style: TextStyle(fontSize: 30),
-                      ),
-                    ],
+                  Text(
+                    "No Leagues Yet",
+                    style: TextStyle(fontSize: 30),
                   ),
-                ),
-            loadSuccess: (state) {
-              return Scaffold(
-                appBar: const CustomAppbar(
-                  title: "Manage Leagues",
-                  icon: Icons.menu,
-                ),
-                drawer: DrawerMenu(),
-                body: ListView.separated(
-                    itemBuilder: ((context, index) {
-                      final league = state.leagues[index];
-                      return LeagueTile(league: league);
-                    }),
-                    separatorBuilder: (BuildContext context, int index) =>
-                        const Divider(),
-                    itemCount: state.leagues.length),
-                floatingActionButton: FloatingActionButton.large(
-                    child: Icon(Icons.add),
-                    onPressed: () {
-                      context.go('/create_league');
-                    }),
-              );
-            });
-      },
-    );
+                ],
+              ),
+            ),
+        loadInProgress: (_) => const Center(
+              child: CircularProgressIndicator(),
+            ),
+        loadFailure: (_) => const Scaffold(
+              body: Column(
+                children: [
+                  Icon(Icons.cloud_off, size: 50),
+                  Text(
+                    "Load Failure",
+                    style: TextStyle(fontSize: 30),
+                  ),
+                ],
+              ),
+            ),
+        loadSuccess: (state) {
+          return Scaffold(
+            appBar: const CustomAppbar(
+              title: "Manage Leagues",
+              icon: Icons.menu,
+            ),
+            drawer: DrawerMenu(),
+            body: ListView.separated(
+                itemBuilder: ((context, index) {
+                  final league = state.leagues[index];
+                  return LeagueTile(league: league);
+                }),
+                separatorBuilder: (BuildContext context, int index) =>
+                    const Divider(),
+                itemCount: state.leagues.length),
+            floatingActionButton: FloatingActionButton.large(
+                child: const Icon(Icons.add),
+                onPressed: () {
+                  context.go('/create_league');
+                }),
+          );
+        });
   }
 }
 
-class LeagueTile extends StatelessWidget {
+class LeagueTile extends ConsumerWidget {
   final League league;
   const LeagueTile({required this.league});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final leagueManager = ref.read(leagueManagerNotifierProvider.notifier);
     return ListTile(
       onTap: () {
-        context.read<LeagueManagerBloc>().add(LeagueManagerEvent.leagueSelected(
-            league.name, league.id, league.members));
-        print(league.name.getOrCrash());
-        print(league.id.getOrCrash());
+        leagueManager.leagueSelected(
+            id: league.id, members: league.members, name: league.name);
         context.go('/league_details');
       },
-      leading: Icon(
+      leading: const Icon(
         Icons.table_chart_outlined,
         size: 50,
       ),
       title: Text(
         league.name.getOrCrash(),
-        style: TextStyle(fontSize: 24),
+        style: const TextStyle(fontSize: 24),
       ),
       subtitle: Text('Members : ${league.members.length}'),
     );

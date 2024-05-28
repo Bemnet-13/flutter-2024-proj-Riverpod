@@ -1,107 +1,95 @@
-import 'package:FantasyE/application/auth/auth_users/auth_users_bloc.dart';
-import 'package:FantasyE/application/auth/manage_account/manage_account_bloc.dart';
+import 'package:FantasyE/application/auth/auth_users/auth_users_provider.dart';
+import 'package:FantasyE/application/auth/manage_account/manage_account_provider.dart';
 import 'package:FantasyE/domain/auth/user.dart';
 import 'package:FantasyE/presentation/widgets/appbar.dart';
 import 'package:FantasyE/presentation/widgets/drawer.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../../../injection.dart';
 import 'package:flutter/material.dart';
 
 class UserAccountsScreen extends StatelessWidget {
   const UserAccountsScreen({super.key});
 
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<AuthUsersBloc>(
-          create: (BuildContext context) =>
-              getIt<AuthUsersBloc>()..add(const AuthUsersEvent.getAllUsers()),
-        ),
-      ],
-      child: const LeaguesList(),
-    );
+    return const LeaguesList();
   }
 }
 
-class LeaguesList extends StatelessWidget {
+class LeaguesList extends ConsumerWidget {
   const LeaguesList({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
-    return BlocConsumer<AuthUsersBloc, AuthUsersState>(
-      listener: (context, state) {},
-      builder: (context, state) {
-        return state.map(
-            initial: (_) => const Scaffold(
-                  body: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.hourglass_empty_rounded,
-                        size: 50,
-                      ),
-                      Text(
-                        "No Leagues Yet",
-                        style: TextStyle(fontSize: 30),
-                      ),
-                    ],
+  Widget build(BuildContext context, WidgetRef ref) {
+    final usersManager = ref.read(authUsersNotifierProvider.notifier);
+    usersManager.getAllUsers();
+    final state = ref.watch(authUsersNotifierProvider);
+    return state.maybeMap(
+        initial: (_) => const Scaffold(
+              body: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.hourglass_empty_rounded,
+                      size: 50,
+                    ),
+                    Text(
+                      "No Leagues Yet",
+                      style: TextStyle(fontSize: 30),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+        loadFailure: (_) => const Scaffold(
+              body: Column(
+                children: [
+                  Icon(Icons.cloud_off, size: 50),
+                  Text(
+                    "Load Failure",
+                    style: TextStyle(fontSize: 30),
                   ),
-                ),
-            loadInProgress: (_) => const Center(
-                  child: CircularProgressIndicator(),
-                ),
-            loadFailure: (_) => const Scaffold(
-                  body: Column(
-                    children: [
-                      Icon(Icons.cloud_off, size: 50),
-                      Text(
-                        "Load Failure",
-                        style: TextStyle(fontSize: 30),
-                      ),
-                    ],
-                  ),
-                ),
-            loadSuccess: (state) {
-              return Scaffold(
-                appBar: const CustomAppbar(
-                  title: "User Accounts",
-                  icon: Icons.menu,
-                ),
-                drawer: DrawerMenu(),
-                body: ListView.separated(
-                    itemBuilder: ((context, index) {
-                      final userDetails = state.users[index];
-                      return UserTile(userDetails: userDetails);
-                    }),
-                    separatorBuilder: (BuildContext context, int index) =>
-                        const Divider(),
-                    itemCount: state.users.length),
-              );
-            });
-      },
-    );
+                ],
+              ),
+            ),
+        loadSuccess: (usersList) {
+          return Scaffold(
+            appBar: const CustomAppbar(
+              title: "User Accounts",
+              icon: Icons.menu,
+            ),
+            drawer: DrawerMenu(),
+            body: ListView.separated(
+                itemBuilder: ((context, index) {
+                  final userDetails = usersList.users[index];
+                  return UserTile(userDetails: userDetails);
+                }),
+                separatorBuilder: (BuildContext context, int index) =>
+                    const Divider(),
+                itemCount: usersList.users.length),
+          );
+        },
+        orElse: () => const Placeholder());
   }
 }
 
-class UserTile extends StatelessWidget {
+class UserTile extends ConsumerWidget {
   final UserDetails userDetails;
   const UserTile({required this.userDetails});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final accountManager = ref.read(manageAccountNotifierProvider.notifier);
     return ListTile(
       onTap: () {
-        context.read<ManageAccountBloc>().add(
-              ManageAccountEvent.userAccountSelected(
-                  userDetails.id,
-                  userDetails.emailAddress,
-                  userDetails.isSuspended,
-                  userDetails.name,
-                  userDetails.role),
-            );
+        accountManager.userAccountSelected(
+            id: userDetails.id,
+            emailAddress: userDetails.emailAddress,
+            role: userDetails.role,
+            name: userDetails.name,
+            suspensionState: userDetails.isSuspended);
         context.go('/user_details');
       },
       leading: const Icon(

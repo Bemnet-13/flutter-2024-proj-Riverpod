@@ -1,13 +1,17 @@
+import 'package:FantasyE/application/league/league_watcher/league_watcher_provider.dart';
 import 'package:FantasyE/presentation/widgets/appbar.dart';
 import 'package:FantasyE/presentation/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:FantasyE/presentation/widgets/cards.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class LeaguesScreen extends StatelessWidget {
+class LeaguesScreen extends ConsumerWidget {
   const LeaguesScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final leagueWatcher = ref.read(leagueWatcherNotifierProvider.notifier);
+    leagueWatcher.getAllLeagues();
     return const Scaffold(
       appBar: CustomAppbar(title: "Leagues", icon: Icons.menu),
       drawer: DrawerMenu(),

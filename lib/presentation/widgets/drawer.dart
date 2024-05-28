@@ -1,35 +1,36 @@
-import 'package:FantasyE/application/auth/auth_logic/auth_logic_bloc.dart';
+import 'package:FantasyE/application/auth/auth_logic/auth_logic_notifier.dart';
+import 'package:FantasyE/application/auth/auth_logic/auth_logic_provider.dart';
 import 'package:FantasyE/presentation/widgets/text_styles.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:FantasyE/injection.dart';
 
-class DrawerMenu extends StatelessWidget {
+class DrawerMenu extends ConsumerWidget {
   const DrawerMenu({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<AuthLogicBloc>(),
-      child: BlocProvider.of<AuthLogicBloc>(context).state ==
-              const AuthLogicState.authenticatedAsAdmin()
-          ? const DrawerAdmin()
-          : const DrawerPlayer(),
-    );
+  Widget build(BuildContext context, WidgetRef ref) {
+    final authenticationState = ref.watch(authLogicNotifierProvider);
+    return authenticationState.maybeMap(
+        authenticatedAsAdmin: (_) => const DrawerAdmin(),
+        authenticatedAsPlayer: (_) => const DrawerPlayer(),
+        orElse: () => const Placeholder());
   }
 }
 
-class DrawerAdmin extends StatelessWidget {
+class DrawerAdmin extends ConsumerWidget {
   const DrawerAdmin({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final authManager = ref.read(authLogicNotifierProvider.notifier);
+
     return Drawer(
       child: ListView(
         children: [
@@ -116,7 +117,7 @@ class DrawerAdmin extends StatelessWidget {
               style: StyledText.drawerTestStyle,
             ),
             onTap: () {
-              _showMyDialog(context);
+              _showMyDialog(context, authManager);
             },
           )
         ],
@@ -125,13 +126,14 @@ class DrawerAdmin extends StatelessWidget {
   }
 }
 
-class DrawerPlayer extends StatelessWidget {
+class DrawerPlayer extends ConsumerWidget {
   const DrawerPlayer({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final authManager = ref.read(authLogicNotifierProvider.notifier);
     return Drawer(
       child: ListView(
         children: [
@@ -171,7 +173,7 @@ class DrawerPlayer extends StatelessWidget {
               style: StyledText.drawerTestStyle,
             ),
             onTap: () {
-              _showMyDialog(context);
+              _showMyDialog(context, authManager);
             },
           )
         ],
@@ -180,7 +182,7 @@ class DrawerPlayer extends StatelessWidget {
   }
 }
 
-void _showMyDialog(BuildContext context) async {
+void _showMyDialog(BuildContext context, AuthLogicNotifier notifier) async {
   return showDialog<void>(
     context: context,
     barrierDismissible: false, // user must tap button!
@@ -209,7 +211,7 @@ void _showMyDialog(BuildContext context) async {
           ),
           TextButton(
               onPressed: () {
-                context.read<AuthLogicBloc>().add(AuthLogicEvent.loggedOut());
+                notifier.logOut();
                 context.go('/welcome');
               },
               child: const Text('OK'))

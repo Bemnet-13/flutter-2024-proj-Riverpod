@@ -1,4 +1,4 @@
-part of 'manage_account_bloc.dart';
+part of 'manage_account_notifier.dart';
 
 @freezed
 class ManageAccountState with _$ManageAccountState {

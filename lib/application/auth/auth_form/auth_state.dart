@@ -1,4 +1,4 @@
-part of 'auth_bloc.dart';
+part of 'auth_notifier.dart';
 
 @freezed
 class SignupFormState extends Equatable with _$SignupFormState {

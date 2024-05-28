@@ -10,7 +10,7 @@ class MyLeaguesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppbar(
+      appBar: const CustomAppbar(
         title: 'My Leagues',
         icon: Icons.menu,
       ),

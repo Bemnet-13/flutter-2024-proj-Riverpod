@@ -50,6 +50,10 @@ class AuthRepository implements IAuthFacade {
     final emailAddressStr = emailAddress.getOrCrash();
     final passwordStr = password.getOrCrash();
     final roleStr = role.getOrCrash() == 'PLAYER' ? 'user' : 'admin';
+    print(nameStr);
+    print(emailAddressStr);
+    print(passwordStr);
+    print(roleStr);
 
     SignupDto signup = SignupDto(
       name: nameStr,
@@ -88,6 +92,9 @@ class AuthRepository implements IAuthFacade {
     final emailAddressStr = emailAddress.getOrCrash();
     final passwordStr = password.getOrCrash();
     final roleStr = role.getOrCrash() == 'PLAYER' ? 'user' : 'admin';
+    print(emailAddressStr);
+    print(passwordStr);
+    print(roleStr);
 
     LoginDto login =
         LoginDto(email: emailAddressStr, password: passwordStr, role: roleStr);
