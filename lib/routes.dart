@@ -1,5 +1,6 @@
 import 'package:FantasyE/presentation/screens/auth/manage_account/all_users.dart';
 import 'package:FantasyE/presentation/screens/auth/manage_account/user_datails.dart';
+import 'package:FantasyE/presentation/screens/avatar/update_avatar.dart';
 import 'package:FantasyE/presentation/screens/league/create_league.dart';
 import 'package:FantasyE/presentation/screens/league/league_details.dart';
 import 'package:FantasyE/presentation/screens/league/manage_league.dart';
@@ -7,14 +8,13 @@ import 'package:FantasyE/presentation/screens/league/update_league.dart';
 import 'package:FantasyE/presentation/screens/welcome_screen.dart';
 import 'package:FantasyE/presentation/screens/avatar/create_avatar.dart';
 import 'package:FantasyE/presentation/screens/avatar/avatar_details.dart';
-import 'package:FantasyE/presentation/screens/avatar/manage_avatars.dart';
-import 'package:FantasyE/presentation/screens/avatar/my_avatars.dart';
+import 'package:FantasyE/presentation/screens/avatar/manage_avatar.dart';
 import 'package:FantasyE/presentation/screens/avatar/add_avatar.dart';
 import 'package:FantasyE/presentation/screens/avatar/avatars.dart';
 import 'package:go_router/go_router.dart';
 import 'presentation/screens/dashboard/admin_dashboard.dart';
 import 'presentation/screens/create_team.dart';
-import 'presentation/screens/faq.dart';
+import 'presentation/screens/faq/faq.dart';
 import 'presentation/screens/league/join_league.dart';
 import 'presentation/screens/leaderboard_rank.dart';
 import 'presentation/screens/league/leagues.dart';
@@ -148,6 +148,11 @@ class Routes {
         path: '/create_avatar',
         builder: (context, state) => const CreateAvatarScreen(),
       ),
+       GoRoute(
+        name: 'update_avatar',
+        path: '/update_avatar',
+        builder: (context, state) => const UpdateAvatarScreen(),
+      ),
       GoRoute(
         name: 'add_avatar',
         path: '/add_avatar',
@@ -163,15 +168,15 @@ class Routes {
         path: '/faq',
         builder: (context, state) => const FaqScreen(),
       ),
-      GoRoute(
-        name: 'my_avatars',
-        path: '/my_avatars',
-        builder: (context, state) => MyAvatarsScreen(),
-      ),
+      // GoRoute(
+      //   name: 'my_avatars',
+      //   path: '/my_avatars',
+      //   builder: (context, state) => MyAvatarsScreen(),
+      // ),
       GoRoute(
         name: 'avatars',
         path: '/avatars',
-        builder: (context, state) => const AvatarScreen(),
+        builder: (context, state) => const AvatarsScreen(),
       ),
       GoRoute(
         name: 'manage_avatars',

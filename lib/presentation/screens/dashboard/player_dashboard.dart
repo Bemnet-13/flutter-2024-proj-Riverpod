@@ -1,7 +1,4 @@
-import 'package:FantasyE/application/auth/auth_logic/auth_logic_notifier.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import '../../widgets/drawer.dart';
 import '../../widgets/appbar.dart';
 import '../../widgets/cards.dart';

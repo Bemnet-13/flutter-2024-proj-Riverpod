@@ -1,4 +1,4 @@
-part of 'avatar_watcher_bloc.dart';
+part of 'avatar_watcher_notifier.dart';
 
 @freezed
 class AvatarWatcherState with _$AvatarWatcherState {

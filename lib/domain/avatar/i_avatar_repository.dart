@@ -1,4 +1,5 @@
 import 'package:FantasyE/domain/core/value_objects.dart';
+import 'package:FantasyE/presentation/screens/avatar/update_avatar.dart';
 import 'package:dartz/dartz.dart';
 import 'package:kt_dart/collection.dart';
 import 'package:FantasyE/domain/avatar/avatar.dart';

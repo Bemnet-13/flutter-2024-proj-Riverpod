@@ -1,4 +1,4 @@
-part of 'avatar_manager_bloc.dart';
+part of 'avatar_manager_notifier.dart';
 
 @freezed
 class AvatarManagerState with _$AvatarManagerState {
@@ -14,7 +14,7 @@ class AvatarManagerState with _$AvatarManagerState {
   factory AvatarManagerState.initial() => AvatarManagerState(
         avatarName: AvatarName(''),
         uniqueId: UniqueId.fromUniqueString(''),
-        avatarScore:AvatarScore('0'),
+        avatarScore: AvatarScore('0'),
         avatarClub: AvatarClub(''),
         operationFailureOrSuccess: none(),
         showErrorMessages: false,
