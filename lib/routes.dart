@@ -9,7 +9,6 @@ import 'package:FantasyE/presentation/screens/welcome_screen.dart';
 import 'package:FantasyE/presentation/screens/avatar/create_avatar.dart';
 import 'package:FantasyE/presentation/screens/avatar/avatar_details.dart';
 import 'package:FantasyE/presentation/screens/avatar/manage_avatar.dart';
-import 'package:FantasyE/presentation/screens/avatar/add_avatar.dart';
 import 'package:FantasyE/presentation/screens/avatar/avatars.dart';
 import 'package:go_router/go_router.dart';
 import 'presentation/screens/dashboard/admin_dashboard.dart';
@@ -153,11 +152,11 @@ class Routes {
         path: '/update_avatar',
         builder: (context, state) => const UpdateAvatarScreen(),
       ),
-      GoRoute(
-        name: 'add_avatar',
-        path: '/add_avatar',
-        builder: (context, state) => const AddAvatarScreen(),
-      ),
+      // GoRoute(
+        // name: 'add_avatar',
+        // path: '/add_avatar',
+        // builder: (context, state) => const AddAvatarScreen(),
+      // ),
       GoRoute(
         name: 'admin_manage_avatars',
         path: '/admin_manage_avatars',

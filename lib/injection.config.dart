@@ -8,31 +8,29 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:FantasyE/application/auth/auth_form/auth_notifier.dart' as _i21;
+import 'package:FantasyE/application/auth/auth_form/auth_notifier.dart' as _i20;
 import 'package:FantasyE/application/auth/auth_logic/auth_logic_notifier.dart'
-    as _i22;
+    as _i21;
 import 'package:FantasyE/application/auth/auth_users/auth_users_notifier.dart'
-    as _i20;
-import 'package:FantasyE/application/auth/manage_account/manage_account_notifier.dart'
     as _i19;
-import 'package:FantasyE/application/avatar/add_avatar/add_avatar_bloc.dart'
-    as _i15;
+import 'package:FantasyE/application/auth/manage_account/manage_account_notifier.dart'
+    as _i18;
 import 'package:FantasyE/application/avatar/avatar_manager/avatar_manager_notifier.dart'
     as _i13;
 import 'package:FantasyE/application/avatar/avatar_watcher/avatar_watcher_notifier.dart'
-    as _i18;
+    as _i17;
 import 'package:FantasyE/application/league/league_manager/league_manager_notifier.dart'
     as _i8;
 import 'package:FantasyE/application/league/league_watcher/league_watcher_notifier.dart'
     as _i14;
-import 'package:FantasyE/domain/auth/i_auth_facade.dart' as _i16;
+import 'package:FantasyE/domain/auth/i_auth_facade.dart' as _i15;
 import 'package:FantasyE/domain/avatar/i_avatar_repository.dart' as _i9;
 import 'package:FantasyE/domain/leagues/i_league_repository.dart' as _i6;
 import 'package:FantasyE/domain/manage_account/i_manage_account_facade.dart'
     as _i11;
 import 'package:FantasyE/infrastructure/auth/api_client.dart' as _i3;
 import 'package:FantasyE/infrastructure/auth/repository/auth_repository.dart'
-    as _i17;
+    as _i16;
 import 'package:FantasyE/infrastructure/avatar/api_client.dart' as _i4;
 import 'package:FantasyE/infrastructure/avatar/repository/avatar_repository.dart'
     as _i10;
@@ -70,22 +68,20 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i13.AvatarManagerNotifier(gh<_i9.IAvatarRepository>()));
     gh.factory<_i14.LeagueWatcherNotifier>(
         () => _i14.LeagueWatcherNotifier(gh<_i6.ILeagueRepository>()));
-    gh.factory<_i15.AddAvatarBloc>(
-        () => _i15.AddAvatarBloc(gh<_i9.IAvatarRepository>()));
-    gh.lazySingleton<_i16.IAuthFacade>(
-        () => _i17.AuthRepository(apiClient: gh<_i3.ApiClient>()));
-    gh.factory<_i18.AvatarWatcherNotifier>(
-        () => _i18.AvatarWatcherNotifier(gh<_i9.IAvatarRepository>()));
-    gh.factory<_i19.ManageAccountNotifier>(
-        () => _i19.ManageAccountNotifier(gh<_i11.IManageAccountFacade>()));
-    gh.factory<_i20.AuthUsersNotifier>(
-        () => _i20.AuthUsersNotifier(gh<_i11.IManageAccountFacade>()));
-    gh.factory<_i21.SignupFormNotifier>(
-        () => _i21.SignupFormNotifier(gh<_i16.IAuthFacade>()));
-    gh.factory<_i21.LoginFormNotifier>(
-        () => _i21.LoginFormNotifier(gh<_i16.IAuthFacade>()));
-    gh.factory<_i22.AuthLogicNotifier>(
-        () => _i22.AuthLogicNotifier(gh<_i16.IAuthFacade>()));
+    gh.lazySingleton<_i15.IAuthFacade>(
+        () => _i16.AuthRepository(apiClient: gh<_i3.ApiClient>()));
+    gh.factory<_i17.AvatarWatcherNotifier>(
+        () => _i17.AvatarWatcherNotifier(gh<_i9.IAvatarRepository>()));
+    gh.factory<_i18.ManageAccountNotifier>(
+        () => _i18.ManageAccountNotifier(gh<_i11.IManageAccountFacade>()));
+    gh.factory<_i19.AuthUsersNotifier>(
+        () => _i19.AuthUsersNotifier(gh<_i11.IManageAccountFacade>()));
+    gh.factory<_i20.SignupFormNotifier>(
+        () => _i20.SignupFormNotifier(gh<_i15.IAuthFacade>()));
+    gh.factory<_i20.LoginFormNotifier>(
+        () => _i20.LoginFormNotifier(gh<_i15.IAuthFacade>()));
+    gh.factory<_i21.AuthLogicNotifier>(
+        () => _i21.AuthLogicNotifier(gh<_i15.IAuthFacade>()));
     return this;
   }
 }
